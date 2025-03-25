@@ -1,0 +1,10 @@
+to set the flask ap in enviroment  instead of set FLASK_APP = app.py run this command
+
+
+$env:FLASK_APP = "app.py"
+$env:FLASK_ENV = "development"
+flask run
+
+if we want our server to reload with changes instead of closing server and writing flask run again and again we use 
+
+flask run --reload
