@@ -1,11 +1,12 @@
+import NavBar from "./component/navbar"
 
 
 function App() {
 
   return (
     <>
-     <h1 className="">hello</h1> 
-        
+      {/* NAVBAR */}
+      <NavBar/>
     </>
   )
 }
