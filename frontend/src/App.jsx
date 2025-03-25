@@ -1,4 +1,4 @@
-/* eslint-disable react-refresh/only-export-components */
+ 
 import NavBar from "./component/navbar";
 import UserGrid from "./component/UserGrid";
 import { useState } from "react";
