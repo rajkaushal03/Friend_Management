@@ -4,7 +4,8 @@ import { BASE_URL } from '../App';
 
 function EditModal({ setUsers, user }) {
     const [isOpen, setIsOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [, setIsLoading] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
     const [inputs, setInputs] = useState({
         name: user.name,
         role: user.role,
@@ -14,6 +15,13 @@ function EditModal({ setUsers, user }) {
 
     const handleEditUser = async (e) => {
         e.preventDefault();
+        if (!showConfirm) return;  // Only proceed if confirmation is true
+        if (inputs.name == "" || inputs.role == "" || inputs.description == "") {
+            inputs.name = user.name,
+                inputs.role = user.role,
+                inputs.description = user.description;
+            return;
+        }
         setIsLoading(true);
         try {
             const res = await fetch(`${BASE_URL}/friends/${user.id}`, {
@@ -28,12 +36,13 @@ function EditModal({ setUsers, user }) {
             if (!res.ok) throw new Error(data.error);
 
             setUsers((prevUsers) => prevUsers.map((u) => (u.id === user.id ? data : u)));
-            alert('Friend updated successfully!');
+            // alert('Friend updated successfully!');
             setIsOpen(false);
         } catch (error) {
             console.log(`An error occurred: ${error.message}`);
         } finally {
             setIsLoading(false);
+            setShowConfirm(false);
         }
     };
 
@@ -46,8 +55,11 @@ function EditModal({ setUsers, user }) {
             {isOpen && (
                 <div className="modal modal-open">
                     <div className="modal-box">
-                        <h3 className="font-bold text-lg">My new BFF 😍</h3>
-                        <form onSubmit={handleEditUser}>
+                        <h3 className="font-bold text-lg">Update information 😍</h3>
+                        <form onSubmit={(e) => {
+
+                            ; e.preventDefault(); setShowConfirm(true);
+                        }}>
                             <div className="flex gap-4 mt-4">
                                 <div className="form-control w-full">
                                     <label className="label">Full Name:</label>
@@ -82,7 +94,6 @@ function EditModal({ setUsers, user }) {
                                 />
                             </div>
 
-                            {/* Gender Selection */}
                             <div className="form-control mt-4">
                                 <label className="label">Gender:</label>
                                 <div className="flex gap-4">
@@ -113,15 +124,24 @@ function EditModal({ setUsers, user }) {
                             </div>
 
                             <div className="modal-action">
-                                <button
-                                    className={`btn btn-primary ${isLoading && 'loading'}`}
-                                    type="submit"
-                                >
-                                    Update
-                                </button>
+                                <button className="btn btn-primary" type="submit">Update</button>
                                 <button className="btn" onClick={() => setIsOpen(false)}>Cancel</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Confirmation Modal */}
+            {showConfirm && (
+                <div className="modal modal-open">
+                    <div className="modal-box">
+                        <h3 className="font-bold text-lg">Are you sure?</h3>
+                        <p className="py-4">Do you really want to update this user?</p>
+                        <div className="modal-action">
+                            <button className="btn btn-success" onClick={handleEditUser}>Yes</button>
+                            <button className="btn" onClick={() => setShowConfirm(false)}>No</button>
+                        </div>
                     </div>
                 </div>
             )}

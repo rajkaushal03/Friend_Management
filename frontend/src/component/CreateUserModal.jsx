@@ -55,6 +55,7 @@ const CreateUserModal = ({ setUsers }) => {
                                         className="input input-bordered"
                                         value={inputs.name}
                                         onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
+                                        required
                                     />
                                 </div>
 
@@ -66,6 +67,7 @@ const CreateUserModal = ({ setUsers }) => {
                                         className="input input-bordered"
                                         value={inputs.role}
                                         onChange={(e) => setInputs({ ...inputs, role: e.target.value })}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -77,31 +79,37 @@ const CreateUserModal = ({ setUsers }) => {
                                     placeholder="He's a software engineer who loves to code and build things."
                                     value={inputs.description}
                                     onChange={(e) => setInputs({ ...inputs, description: e.target.value })}
+                                    required
                                 />
                             </div>
 
-                            <div className="form-control flex flex-col mt-4">
-                                <label className="label">Gender :</label>
+                            <div className="form-control mt-4">
+                                <label className="label">Gender:</label>
                                 <div className="flex gap-4">
                                     <label className="label cursor-pointer">
                                         <input
                                             type="radio"
                                             name="gender"
                                             value="male"
-                                            className="radio"
-                                            onChange={(e) => setInputs({ ...inputs, gender: e.target.value })}
+                                            className="radio checked:bg-blue-500"
+                                            checked={inputs.gender === 'male'}
+                                            onChange={(e) => setInputs((prev) => ({ ...prev, gender: e.target.value }))}
+                                            required
                                         />
-                                        Male
+                                        <span className="ml-2">Male</span>
                                     </label>
+
                                     <label className="label cursor-pointer">
                                         <input
                                             type="radio"
                                             name="gender"
                                             value="female"
-                                            className="radio"
-                                            onChange={(e) => setInputs({ ...inputs, gender: e.target.value })}
+                                            className="radio checked:bg-pink-500"
+                                            checked={inputs.gender === 'female'}
+                                            onChange={(e) => setInputs((prev) => ({ ...prev, gender: e.target.value }))}
+                                            required
                                         />
-                                        Female
+                                        <span className="ml-2">Female</span>
                                     </label>
                                 </div>
                             </div>
