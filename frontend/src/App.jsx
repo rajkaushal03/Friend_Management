@@ -16,7 +16,7 @@ function App() {
 			<div className="container mx-auto my-4">
 				<h1 className="text-3xl md:text-5xl font-bold uppercase text-center mb-8">
 					<span className="bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text">
-						My List
+						Add People information
 					</span>
 					
 				</h1>
