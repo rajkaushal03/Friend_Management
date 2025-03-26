@@ -1,5 +1,5 @@
  
-import NavBar from "./component/navbar";
+import NavBar from "./component/NavBar";
 import UserGrid from "./component/UserGrid";
 import { useState } from "react";
 
@@ -12,6 +12,7 @@ function App() {
 	return (
 		<div className="min-h-screen flex flex-col">
 			<NavBar setUsers={setUsers} />
+			
 
 			<div className="container mx-auto my-4">
 				<h1 className="text-3xl md:text-5xl font-bold uppercase text-center mb-8">
