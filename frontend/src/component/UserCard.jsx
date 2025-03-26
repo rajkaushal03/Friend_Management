@@ -51,7 +51,7 @@ const UserCard = ({ user, setUsers }) => {
                     </div>
                 </div>
 
-                <p className="mt-4 text-gray-600">{user.description}</p>
+                <p className="mt-4 text-gray-600 capitalize">{user.description}</p>
             </div>
 
             {/* Confirmation Modal */}

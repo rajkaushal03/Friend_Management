@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BiEditAlt } from 'react-icons/bi';
+import { BASE_URL } from '../App';
 
 function EditModal({ setUsers, user }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,14 +9,14 @@ function EditModal({ setUsers, user }) {
         name: user.name,
         role: user.role,
         description: user.description,
-        gender: user.gender || '',
+        // gender: user.gender || '',
     });
 
     const handleEditUser = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await fetch(`/friends/${user.id}`, {
+            const res = await fetch(`${BASE_URL}/friends/${user.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,7 +31,7 @@ function EditModal({ setUsers, user }) {
             alert('Friend updated successfully!');
             setIsOpen(false);
         } catch (error) {
-            alert(`An error occurred: ${error.message}`);
+            console.log(`An error occurred: ${error.message}`);
         } finally {
             setIsLoading(false);
         }
