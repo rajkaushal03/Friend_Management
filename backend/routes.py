@@ -4,12 +4,6 @@ from flask import request, jsonify  # type: ignore
 from models import Friend 
 
 
-# this is a route for the home page
-@app.route("/",methods=["GET"])
-def home():    
-    return "hello world"
-
-
 # Get all the Friends
 @app.route("/api/friends",methods=["GET"])
 # route handler function
