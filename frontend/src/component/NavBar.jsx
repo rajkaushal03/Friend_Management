@@ -1,14 +1,26 @@
 import React from 'react'
 import CreateUserModal from './CreateUserModal'
 
-const NavBar = ({ setUsers }) => {
+const NavBar = ({ users, setUsers,Copy }) => {
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const searchValue = e.target.value.toLowerCase();
+        if (searchValue) {
+            const filtered = users.filter(user => user.name.toLowerCase().includes(e.target.value.toLowerCase()));
+            setUsers(filtered);
+        }
+        else
+        {
+            setUsers(Copy);
+        }
+    }
     return (
         <div className="navbar bg-base-200 shadow-sm">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">LinkNest</a>
             </div>
             <div className="flex gap-2">
-                <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" onChange={(e) => { handleSearch(e); }} />
                 <label className="swap swap-rotate ">
                     {/* this hidden checkbox controls the state */}
                     <input type="checkbox" className="theme-controller" value="light" />

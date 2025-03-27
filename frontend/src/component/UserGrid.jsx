@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { BASE_URL } from '../App';
 import UserCard from './UserCard';
 
-const UserGrid = ({ users, setUsers }) => {
+const UserGrid = ({ users, setUsers,setCopy }) => {
     const [isLoading, setIsLoading] = useState(true);
+    
 
     useEffect(() => {
         const getUsers = async () => {
@@ -15,6 +16,7 @@ const UserGrid = ({ users, setUsers }) => {
                     throw new Error(data.error);
                 }
                 setUsers(data);
+                setCopy(data);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -22,7 +24,7 @@ const UserGrid = ({ users, setUsers }) => {
             }
         };
         getUsers();
-    }, [setUsers]);
+    }, [setUsers,setCopy]);
 
     return (
         <>
