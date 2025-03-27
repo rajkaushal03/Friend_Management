@@ -22,7 +22,7 @@ const UserGrid = ({ users, setUsers }) => {
             }
         };
         getUsers();
-    }, [setUsers,users]);
+    }, [setUsers]);
 
     return (
         <>
