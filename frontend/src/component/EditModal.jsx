@@ -94,34 +94,7 @@ function EditModal({ setUsers, user }) {
                                 />
                             </div>
 
-                            <div className="form-control mt-4">
-                                <label className="label">Gender:</label>
-                                <div className="flex gap-4">
-                                    <label className="label cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="gender"
-                                            value="male"
-                                            className="radio checked:bg-blue-500"
-                                            checked={inputs.gender === 'male'}
-                                            onChange={(e) => setInputs((prev) => ({ ...prev, gender: e.target.value }))}
-                                        />
-                                        <span className="ml-2">Male</span>
-                                    </label>
-
-                                    <label className="label cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="gender"
-                                            value="female"
-                                            className="radio checked:bg-pink-500"
-                                            checked={inputs.gender === 'female'}
-                                            onChange={(e) => setInputs((prev) => ({ ...prev, gender: e.target.value }))}
-                                        />
-                                        <span className="ml-2">Female</span>
-                                    </label>
-                                </div>
-                            </div>
+                          
 
                             <div className="modal-action">
                                 <button className="btn btn-primary" type="submit">Update</button>
